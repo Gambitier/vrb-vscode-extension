@@ -2,6 +2,8 @@
   "name": "vite-react-boilerplate-utils",
   "displayName": "Vite React Boilerplate Utils",
   "description": "utils",
+  "repository": "https://github.com/Gambitier/vite-react-boilerplate-utils",
+  "license": "MIT",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.89.0"
@@ -52,6 +54,7 @@
     "@typescript-eslint/parser": "^7.7.1",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.26.1",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
