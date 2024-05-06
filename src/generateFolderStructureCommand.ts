@@ -2,23 +2,69 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 import { Command } from "./commands";
+import { Uri, window } from "vscode";
+import { invalidFileNames } from "./utils";
+import { createFile } from "./file-helper";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
     Command.generateFolderStructureCommand,
-    () => {
-      const workspaceFolders = vscode.workspace.workspaceFolders;
-      if (workspaceFolders && workspaceFolders.length > 0) {
-        const folderPath = workspaceFolders[0].uri.fsPath; // Assuming you want to generate structure in the first workspace root
-        generateFolderStructure(folderPath);
-      } else {
-        vscode.window.showErrorMessage("No workspace folder found.");
-      }
-    }
+    (resource: Uri) => runCommand(resource)
   );
 
   return disposable;
 }
+
+async function runCommand(resource: Uri) {
+  return window.showInputBox({
+    placeHolder: "Please enter module name",
+  })
+    .then<any>((input) => {
+      if (input === undefined) { return; }
+      if (!invalidFileNames.test(input)) {
+        return createFile({
+          name: input,
+          type: 'module',
+          associatedArray: 'imports',
+          uri: resource,
+          fullName: input.toLowerCase() + `.module.ts`
+        });
+      }
+      else {
+        return window.showErrorMessage('Invalid filename');
+      }
+    });
+}
+
+// async function runCommand(resource: Uri) {
+//   const input = await window.showInputBox({
+//     placeHolder: "Please enter module name",
+//   });
+
+//   if (input === undefined) {
+//     return;
+//   }
+
+//   if (invalidFileNames.test(input)) {
+//     return window.showErrorMessage("Invalid filename");
+//   }
+
+//   let resp = null;
+
+//   try {
+//     resp = createFile({
+//       name: input,
+//       type: "module",
+//       associatedArray: "imports",
+//       uri: resource,
+//       fullName: input.toLowerCase() + `.module.ts`,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+
+//   return resp;
+// }
 
 function generateFolderStructure(folderPath: string) {
   const structure = [
