@@ -3,10 +3,10 @@ import * as fs from 'fs-extra';
 import { join, basename } from 'path';
 import { TextEncoder, TextDecoder } from 'util';
 import { getPascalCase, getRelativePathForImport, getArraySchematics, getLineNoFromString, getClassName, getCamelCase } from './utils';
-import { NestFile, NestImports, NestProviders } from './nest';
+import { AppFile } from './appFile';
 import { render } from 'mustache';
 
-export async function createFile(file: NestFile) {
+export async function createFile(file: AppFile) {
 
     if (fs.existsSync(join(file.uri.fsPath, file.name.toLowerCase() + `.${file.type}.ts`))) {
         return window.showErrorMessage('A file already exists with given name');
@@ -49,7 +49,7 @@ export async function formatTextDocument(uri: Uri) {
         });
 }
 
-export async function addFilesToAppModule(file: NestFile) {
+export async function addFilesToAppModule(file: AppFile) {
     let moduleFile: Uri[] = [];
 
     // if (file.type === 'service' || file.type === 'controller') {
@@ -71,7 +71,7 @@ export async function addFilesToAppModule(file: NestFile) {
     }
 }
 
-export async function getFileTemplate(file: NestFile): Promise<string> {
+export async function getFileTemplate(file: AppFile): Promise<string> {
     return fs.readFile(join(__dirname, `/templates/${file.type}.mustache`), 'utf8')
         .then((data: any) => {
             const name = getClassName(file.name);
@@ -85,7 +85,7 @@ export async function getFileTemplate(file: NestFile): Promise<string> {
         });
 }
 
-export async function getImportTemplate(file: NestFile, appModule: Uri): Promise<string> {
+export async function getImportTemplate(file: AppFile, appModule: Uri): Promise<string> {
     return fs.readFile(join(__dirname, `/templates/import.mustache`), 'utf8')
         .then((data: any) => {
             let view = {
@@ -96,7 +96,7 @@ export async function getImportTemplate(file: NestFile, appModule: Uri): Promise
         });
 }
 
-export async function addToArray(data: Uint8Array, file: NestFile, modulePath: Uri) {
+export async function addToArray(data: Uint8Array, file: AppFile, modulePath: Uri) {
 
     if (file.associatedArray !== undefined) {
         const pattern = getArraySchematics(file.associatedArray);

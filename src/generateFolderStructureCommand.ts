@@ -5,7 +5,7 @@ import { Command } from "./commands";
 import { Uri, window } from "vscode";
 import { invalidFileNames } from "./utils";
 import { createFile } from "./file-helper";
-import { AppFileType } from "./nest";
+import { AppFileType } from "./appFile";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
