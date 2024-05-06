@@ -5,6 +5,7 @@ import { Command } from "./commands";
 import { Uri, window } from "vscode";
 import { invalidFileNames } from "./utils";
 import { createFile } from "./file-helper";
+import { AppFileType } from "./nest";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
@@ -24,7 +25,7 @@ async function runCommand(resource: Uri) {
       if (!invalidFileNames.test(input)) {
         return createFile({
           name: input,
-          type: 'module',
+          type: AppFileType.module,
           associatedArray: 'imports',
           uri: resource,
           fullName: input.toLowerCase() + `.module.ts`

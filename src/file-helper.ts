@@ -52,9 +52,9 @@ export async function formatTextDocument(uri: Uri) {
 export async function addFilesToAppModule(file: NestFile) {
     let moduleFile: Uri[] = [];
 
-    if (file.type === 'service' || file.type === 'controller') {
-        moduleFile = await workspace.findFiles(`**/${file.name}.module.ts`, '**/node_modules/**', 1);
-    }
+    // if (file.type === 'service' || file.type === 'controller') {
+    //     moduleFile = await workspace.findFiles(`**/${file.name}.module.ts`, '**/node_modules/**', 1);
+    // }
 
     if (moduleFile.length === 0 && file.name !== 'app') {
         moduleFile = await workspace.findFiles('**/app.module.ts', '**/node_modules/**', 1);
@@ -108,13 +108,9 @@ export async function addToArray(data: Uint8Array, file: NestFile, modulePath: U
             pos = getLineNoFromString(tempStrData, match);
             const toInsert = '\n        ' + getClassName(file.name) + getPascalCase(file.type) + ', ';
             let edit = new WorkspaceEdit();
-            if (file.type === 'filter') {
-                edit.insert(modulePath, new Position(0, 0), NestImports.filter + '\n');
-                edit.insert(modulePath, pos, '\n' + NestProviders.filter);
-            }
-            else {
-                edit.insert(modulePath, pos, toInsert);
-            }
+            // handle file.type here 
+            // if (file.type === AppFileType.filter) 
+            edit.insert(modulePath, pos, toInsert);
             const importPath = await getImportTemplate(file, modulePath);
             edit.insert(modulePath, new Position(0, 0), importPath + '\n');
 

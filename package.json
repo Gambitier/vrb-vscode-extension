@@ -34,7 +34,8 @@
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
+    "compile": "rm -rf ./out && tsc -p ./ && yarn run copy",
+    "copy": "cp -r ./src/templates ./out",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
