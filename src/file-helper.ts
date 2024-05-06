@@ -22,10 +22,7 @@ import {
 } from "./utils";
 
 export async function createFile(file: AppFile) {
-  const filePath = join(
-    file.uri.fsPath,
-    file.name.toLowerCase() + `.${file.type}.ts`
-  );
+  const filePath = join(file.uri.fsPath, file.fullName);
 
   if (fs.existsSync(filePath)) {
     return window.showErrorMessage("A file already exists with given name");
@@ -34,29 +31,23 @@ export async function createFile(file: AppFile) {
   const stats = await workspace.fs.stat(file.uri);
 
   if (stats.type === FileType.Directory) {
-    file.uri = Uri.parse(file.uri.path + "/" + file.fullName);
+    file.uri = Uri.parse(filePath);
   } else {
     file.uri = Uri.parse(
       file.uri.path.replace(basename(file.uri.path), "") + "/" + file.fullName
     );
   }
 
-  return getFileTemplate(file)
-    .then((data) => {
-      return workspace.fs.writeFile(file.uri, new TextEncoder().encode(data));
-    })
-    .then(() => {
-      return addFilesToAppModule(file);
-    })
-    .then(() => {
-      return formatTextDocument(file.uri);
-    })
-    .then(() => {
-      return true;
-    })
-    .catch((err) => {
-      return window.showErrorMessage(err);
-    });
+  try {
+    const data = await getFileTemplate(file);
+    await workspace.fs.writeFile(file.uri, new TextEncoder().encode(data));
+    await addFilesToAppModule(file);
+    await formatTextDocument(file.uri);
+  } catch (err: any) {
+    return window.showErrorMessage(err);
+  }
+
+  return true;
 }
 
 export async function formatTextDocument(uri: Uri) {
