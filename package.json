@@ -22,14 +22,21 @@
       {
         "command": "extension.generateFolderStructure",
         "title": "VRB - Add Feature"
+      },
+      {
+        "command": "extension.addFormComponent",
+        "title": "VRB - Add Form"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.generateFolderStructure",
-          "when": "explorerViewletVisible",
-          "title": "Generate Folder Structure"
+          "when": "explorerViewletVisible"
+        },
+        {
+          "command": "extension.addFormComponent",
+          "when": "explorerViewletVisible"
         }
       ]
     }

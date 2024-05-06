@@ -3,7 +3,6 @@ import { render } from "mustache";
 import { basename, join } from "path";
 import { TextDecoder, TextEncoder } from "util";
 import {
-  FileType,
   Position,
   Uri,
   WorkspaceEdit,
@@ -28,15 +27,7 @@ export async function createFile(file: AppFile) {
     return window.showErrorMessage("A file already exists with given name");
   }
 
-  const stats = await workspace.fs.stat(file.uri);
-
-  if (stats.type === FileType.Directory) {
-    file.uri = Uri.parse(filePath);
-  } else {
-    file.uri = Uri.parse(
-      file.uri.path.replace(basename(file.uri.path), "") + "/" + file.fullName
-    );
-  }
+  file.uri = Uri.parse(filePath);
 
   try {
     const data = await getFileTemplate(file);
