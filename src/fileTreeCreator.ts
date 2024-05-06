@@ -15,18 +15,25 @@ export function generateFiles(json: FileNode, basePath: string): void {
   const path = join(basePath, json.name);
 
   if (json.type === "file") {
-    if (!fs.existsSync(path)) {
-      fs.writeFileSync(path, "");
-      console.log("Created file:", path);
-    }
+    createFile(path);
   } else if (json.type === "directory") {
-    if (!fs.existsSync(path)) {
-      fs.mkdirSync(path);
-      console.log("Created directory:", path);
-    }
-
+    createDir(path);
     for (const child of json.children ?? []) {
       generateFiles(child, path);
     }
+  }
+}
+
+function createDir(path: string) {
+  if (!fs.existsSync(path)) {
+    fs.mkdirSync(path);
+    console.log("Created directory:", path);
+  }
+}
+
+function createFile(path: string, content: string = "") {
+  if (!fs.existsSync(path)) {
+    fs.writeFileSync(path, content);
+    console.log("Created file:", path);
   }
 }
