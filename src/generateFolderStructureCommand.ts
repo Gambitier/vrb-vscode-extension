@@ -1,16 +1,13 @@
 import * as vscode from "vscode";
-import * as fs from "fs";
-import * as path from "path";
-import { Command } from "./commands";
 import { Uri, window } from "vscode";
+import { Command } from "./commands";
+import { FileNode, generateFiles } from "./fileTreeCreator";
 import { invalidFileNames } from "./utils";
-import { createFile } from "./file-helper";
-import { AppFileType } from "./appFile";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
     Command.generateFolderStructureCommand,
-    (resource: Uri) => runCommand(resource)
+    (resource: Uri) => runCommand(resource),
   );
 
   return disposable;
@@ -25,22 +22,67 @@ async function runCommand(resource: Uri) {
     return;
   }
 
-  const structure = [
-    { dirName: "", files: ["index.ts"] }, // for the root folder
-    { dirName: "components", files: ["index.ts"] },
-    { dirName: "api", files: ["index.ts"] },
-    { dirName: "routes", files: ["index.ts"] },
-  ];
-
   if (invalidFileNames.test(input)) {
     return window.showErrorMessage("Invalid filename");
-  } 
+  }
 
-  return createFile({
+  const json: FileNode = {
     name: input,
-    type: AppFileType.module,
-    associatedArray: "imports",
-    uri: resource,
-    fullName: input.toLowerCase() + `.module.ts`,
-  });
+    type: "directory",
+    children: [
+      {
+        // TODO: generate this file with template
+        // export * from all directories created
+        name: "index.ts",
+        type: "file",
+      },
+      {
+        name: "components",
+        type: "directory",
+        children: [
+          {
+            name: "index.ts",
+            type: "file",
+          },
+        ],
+      },
+      {
+        name: "routes",
+        type: "directory",
+        children: [
+          {
+            // TODO: generate this file with template
+            name: "index.tsx",
+            type: "file",
+          },
+        ],
+      },
+      {
+        name: "api",
+        type: "directory",
+        children: [
+          {
+            name: "index.ts",
+            type: "file",
+          },
+          {
+            name: "types",
+            type: "directory",
+            children: [
+              {
+                name: "index.ts",
+                type: "file",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
+  try {
+    return generateFiles(json, resource.path);
+  } catch (err) {
+    return window.showErrorMessage("Error creating dir tree");
+  }
 }

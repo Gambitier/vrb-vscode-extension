@@ -39,7 +39,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\" "
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
@@ -52,6 +53,7 @@
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
     "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
   "dependencies": {

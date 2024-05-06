@@ -1,7 +1,7 @@
 import { Uri } from "vscode";
 
 export enum AppFileType {
-  module = "module",
+  feature = "feature",
 }
 
 export class AppFile {
