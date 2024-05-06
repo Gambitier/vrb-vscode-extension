@@ -17,24 +17,25 @@ export function generateFolderStructureCommand() {
 }
 
 async function runCommand(resource: Uri) {
-  return window.showInputBox({
+  const input = await window.showInputBox({
     placeHolder: "Please enter module name",
-  })
-    .then<any>((input) => {
-      if (input === undefined) { return; }
-      if (!invalidFileNames.test(input)) {
-        return createFile({
-          name: input,
-          type: AppFileType.module,
-          associatedArray: 'imports',
-          uri: resource,
-          fullName: input.toLowerCase() + `.module.ts`
-        });
-      }
-      else {
-        return window.showErrorMessage('Invalid filename');
-      }
+  });
+
+  if (input === undefined) {
+    return;
+  }
+
+  if (!invalidFileNames.test(input)) {
+    return createFile({
+      name: input,
+      type: AppFileType.module,
+      associatedArray: "imports",
+      uri: resource,
+      fullName: input.toLowerCase() + `.module.ts`,
     });
+  } else {
+    return window.showErrorMessage("Invalid filename");
+  }
 }
 
 // async function runCommand(resource: Uri) {
