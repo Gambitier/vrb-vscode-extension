@@ -25,6 +25,13 @@ async function runCommand(resource: Uri) {
     return;
   }
 
+  const structure = [
+    { dirName: "", files: ["index.ts"] }, // for the root folder
+    { dirName: "components", files: ["index.ts"] },
+    { dirName: "api", files: ["index.ts"] },
+    { dirName: "routes", files: ["index.ts"] },
+  ];
+
   if (!invalidFileNames.test(input)) {
     return createFile({
       name: input,
@@ -36,55 +43,4 @@ async function runCommand(resource: Uri) {
   } else {
     return window.showErrorMessage("Invalid filename");
   }
-}
-
-// async function runCommand(resource: Uri) {
-//   const input = await window.showInputBox({
-//     placeHolder: "Please enter module name",
-//   });
-
-//   if (input === undefined) {
-//     return;
-//   }
-
-//   if (invalidFileNames.test(input)) {
-//     return window.showErrorMessage("Invalid filename");
-//   }
-
-//   let resp = null;
-
-//   try {
-//     resp = createFile({
-//       name: input,
-//       type: "module",
-//       associatedArray: "imports",
-//       uri: resource,
-//       fullName: input.toLowerCase() + `.module.ts`,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-
-//   return resp;
-// }
-
-function generateFolderStructure(folderPath: string) {
-  const structure = [
-    { name: "components", files: ["index.ts"] },
-    { name: "api", files: ["index.ts"] },
-    { name: "routes", files: ["index.ts"] },
-    { name: "", files: ["index.ts"] }, // for the root folder
-  ];
-
-  structure.forEach((item) => {
-    const folderName = path.join(folderPath, item.name);
-    fs.mkdirSync(folderName);
-    item.files.forEach((fileName) => {
-      fs.writeFileSync(path.join(folderName, fileName), "");
-    });
-  });
-
-  vscode.window.showInformationMessage(
-    "Folder structure generated successfully."
-  );
 }
