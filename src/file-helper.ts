@@ -73,7 +73,7 @@ export async function addFilesToAppModule(file: NestFile) {
 
 export async function getFileTemplate(file: NestFile): Promise<string> {
     return fs.readFile(join(__dirname, `/templates/${file.type}.mustache`), 'utf8')
-        .then((data) => {
+        .then((data: any) => {
             const name = getClassName(file.name);
             const type = getPascalCase(basename(file.uri.path).split('.')[1]);
             let view = {
@@ -87,7 +87,7 @@ export async function getFileTemplate(file: NestFile): Promise<string> {
 
 export async function getImportTemplate(file: NestFile, appModule: Uri): Promise<string> {
     return fs.readFile(join(__dirname, `/templates/import.mustache`), 'utf8')
-        .then((data) => {
+        .then((data: any) => {
             let view = {
                 Name: getClassName(file.name) + getPascalCase(file.type),
                 Path: getRelativePathForImport(appModule, file.uri)
