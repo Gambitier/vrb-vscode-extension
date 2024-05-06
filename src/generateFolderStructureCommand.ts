@@ -7,7 +7,7 @@ import { invalidFileNames } from "./utils";
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
     Command.generateFolderStructureCommand,
-    (resource: Uri) => runCommand(resource),
+    (resource: Uri) => runCommand(resource)
   );
 
   return disposable;
@@ -15,7 +15,7 @@ export function generateFolderStructureCommand() {
 
 async function runCommand(resource: Uri) {
   const input = await window.showInputBox({
-    placeHolder: "Please enter module name",
+    placeHolder: "Please enter feature name",
   });
 
   if (input === undefined) {
@@ -23,7 +23,7 @@ async function runCommand(resource: Uri) {
   }
 
   if (invalidFileNames.test(input)) {
-    return window.showErrorMessage("Invalid filename");
+    return window.showErrorMessage("Invalid feature name");
   }
 
   const json: FileNode = {

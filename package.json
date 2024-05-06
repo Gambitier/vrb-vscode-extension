@@ -21,7 +21,7 @@
       },
       {
         "command": "extension.generateFolderStructure",
-        "title": "Generate Folder Structure"
+        "title": "VRB - Add Feature"
       }
     ],
     "menus": {
