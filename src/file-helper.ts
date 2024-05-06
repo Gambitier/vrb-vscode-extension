@@ -1,63 +1,62 @@
-import {
-  window,
-  Uri,
-  workspace,
-  WorkspaceEdit,
-  Position,
-  commands,
-  FileType,
-} from "vscode";
 import * as fs from "fs-extra";
-import { join, basename } from "path";
-import { TextEncoder, TextDecoder } from "util";
+import { render } from "mustache";
+import { basename, join } from "path";
+import { TextDecoder, TextEncoder } from "util";
 import {
+  FileType,
+  Position,
+  Uri,
+  WorkspaceEdit,
+  commands,
+  window,
+  workspace,
+} from "vscode";
+import { AppFile } from "./appFile";
+import {
+  getArraySchematics,
+  getCamelCase,
+  getClassName,
+  getLineNoFromString,
   getPascalCase,
   getRelativePathForImport,
-  getArraySchematics,
-  getLineNoFromString,
-  getClassName,
-  getCamelCase,
 } from "./utils";
-import { AppFile } from "./appFile";
-import { render } from "mustache";
 
 export async function createFile(file: AppFile) {
-  if (
-    fs.existsSync(
-      join(file.uri.fsPath, file.name.toLowerCase() + `.${file.type}.ts`),
-    )
-  ) {
+  const filePath = join(
+    file.uri.fsPath,
+    file.name.toLowerCase() + `.${file.type}.ts`
+  );
+
+  if (fs.existsSync(filePath)) {
     return window.showErrorMessage("A file already exists with given name");
-  } else {
-    const stats = await workspace.fs.stat(file.uri);
-
-    if (stats.type === FileType.Directory) {
-      file.uri = Uri.parse(file.uri.path + "/" + file.fullName);
-    } else {
-      file.uri = Uri.parse(
-        file.uri.path.replace(basename(file.uri.path), "") +
-          "/" +
-          file.fullName,
-      );
-    }
-
-    return getFileTemplate(file)
-      .then((data) => {
-        return workspace.fs.writeFile(file.uri, new TextEncoder().encode(data));
-      })
-      .then(() => {
-        return addFilesToAppModule(file);
-      })
-      .then(() => {
-        return formatTextDocument(file.uri);
-      })
-      .then(() => {
-        return true;
-      })
-      .catch((err) => {
-        return window.showErrorMessage(err);
-      });
   }
+
+  const stats = await workspace.fs.stat(file.uri);
+
+  if (stats.type === FileType.Directory) {
+    file.uri = Uri.parse(file.uri.path + "/" + file.fullName);
+  } else {
+    file.uri = Uri.parse(
+      file.uri.path.replace(basename(file.uri.path), "") + "/" + file.fullName
+    );
+  }
+
+  return getFileTemplate(file)
+    .then((data) => {
+      return workspace.fs.writeFile(file.uri, new TextEncoder().encode(data));
+    })
+    .then(() => {
+      return addFilesToAppModule(file);
+    })
+    .then(() => {
+      return formatTextDocument(file.uri);
+    })
+    .then(() => {
+      return true;
+    })
+    .catch((err) => {
+      return window.showErrorMessage(err);
+    });
 }
 
 export async function formatTextDocument(uri: Uri) {
@@ -82,7 +81,7 @@ export async function addFilesToAppModule(file: AppFile) {
     moduleFile = await workspace.findFiles(
       "**/app.module.ts",
       "**/node_modules/**",
-      1,
+      1
     );
   }
 
@@ -115,7 +114,7 @@ export async function getFileTemplate(file: AppFile): Promise<string> {
 
 export async function getImportTemplate(
   file: AppFile,
-  appModule: Uri,
+  appModule: Uri
 ): Promise<string> {
   return fs
     .readFile(join(__dirname, `/templates/import.mustache`), "utf8")
@@ -131,7 +130,7 @@ export async function getImportTemplate(
 export async function addToArray(
   data: Uint8Array,
   file: AppFile,
-  modulePath: Uri,
+  modulePath: Uri
 ) {
   if (file.associatedArray !== undefined) {
     const pattern = getArraySchematics(file.associatedArray);
