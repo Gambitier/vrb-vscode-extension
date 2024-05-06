@@ -14,10 +14,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "vite-react-boilerplate-utils.helloWorld",
+        "command": "extension.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "extension.generateFolderStructure",
+        "title": "Generate Folder Structure"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.generateFolderStructure",
+          "when": "explorerViewletVisible",
+          "title": "Generate Folder Structure"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
