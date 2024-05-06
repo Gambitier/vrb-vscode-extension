@@ -6,7 +6,7 @@ import { invalidFileNames } from "./utils";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
-    Command.generateFolderStructureCommand,
+    Command.generateFolderStructure,
     (resource: Uri) => runCommand(resource)
   );
 
