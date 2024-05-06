@@ -1,15 +1,14 @@
-import path from "path";
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
 import { AppFileType } from "./appFile";
 import { Command } from "./commands";
 import { createFile } from "./file-helper";
-import { generateFiles } from "./fileTreeCreator";
+import { generateNewComponentStructure } from "./generateNewComponentStructure";
 import { invalidFileNames } from "./utils";
 
 const runCommand = async (resource: Uri) => {
   const input = await window.showInputBox({
-    placeHolder: "Please enter module name",
+    placeHolder: "Please enter form name",
   });
 
   if (input === undefined) {
@@ -20,22 +19,7 @@ const runCommand = async (resource: Uri) => {
     return window.showErrorMessage("Invalid name");
   }
 
-  generateFiles(
-    {
-      name: input,
-      type: "directory",
-      children: [
-        {
-          name: "index.ts",
-          type: "file",
-          fileContent: `export * from "./${input}";\n`,
-        },
-      ],
-    },
-    resource.path
-  );
-
-  const componentUri = Uri.parse(path.join(resource.path, input));
+  const componentUri = generateNewComponentStructure(input, resource);
 
   return createFile({
     name: input,
