@@ -32,15 +32,15 @@ async function runCommand(resource: Uri) {
     { dirName: "routes", files: ["index.ts"] },
   ];
 
-  if (!invalidFileNames.test(input)) {
-    return createFile({
-      name: input,
-      type: AppFileType.module,
-      associatedArray: "imports",
-      uri: resource,
-      fullName: input.toLowerCase() + `.module.ts`,
-    });
-  } else {
+  if (invalidFileNames.test(input)) {
     return window.showErrorMessage("Invalid filename");
-  }
+  } 
+
+  return createFile({
+    name: input,
+    type: AppFileType.module,
+    associatedArray: "imports",
+    uri: resource,
+    fullName: input.toLowerCase() + `.module.ts`,
+  });
 }
