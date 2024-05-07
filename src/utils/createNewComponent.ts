@@ -1,9 +1,9 @@
 import path from "path";
 import * as vscode from "vscode";
 import { Uri } from "vscode";
-import { AppFileType } from "./appFile";
-import { createFile } from "./file-helper";
+import { TemplateFileName } from "./appFile";
 import { generateFilesSync } from "./fileTreeCreator";
+import { createFileFromTemplate } from "./templateUtils";
 
 /// generates following files at given vscode resource path
 /// - {componentName}/{componentName}.tsx
@@ -11,7 +11,7 @@ import { generateFilesSync } from "./fileTreeCreator";
 export async function createNewComponent(
   componentName: string,
   resource: vscode.Uri,
-  fileType: AppFileType
+  fileType: TemplateFileName
 ) {
   generateFilesSync(
     {
@@ -30,11 +30,11 @@ export async function createNewComponent(
 
   const componentUri = Uri.parse(path.join(resource.path, componentName));
 
-  await createFile({
+  await createFileFromTemplate({
     name: componentName,
-    type: fileType,
-    uri: componentUri,
-    fullName: `${componentName}.tsx`,
+    templateFileName: fileType,
+    fileLocation: componentUri,
+    nameWithExtension: `${componentName}.tsx`,
   });
 
   return componentUri;

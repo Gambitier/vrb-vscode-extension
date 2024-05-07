@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
-import { AppFileType, invalidFileNames } from "../utils/appFile";
+import { TemplateFileName, invalidFileNames } from "../utils/appFile";
 import { createNewComponent } from "../utils/createNewComponent";
 import { Command } from "./commands";
 
@@ -17,7 +17,7 @@ const runCommand = async (resource: Uri) => {
     return window.showErrorMessage("Invalid name");
   }
 
-  await createNewComponent(input, resource, AppFileType.formComponent);
+  await createNewComponent(input, resource, TemplateFileName.formComponent);
 };
 
 export function addFormComponent() {

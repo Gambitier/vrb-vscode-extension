@@ -5,19 +5,22 @@ import { TextEncoder } from "util";
 import { Uri, commands, window, workspace } from "vscode";
 import { AppFile } from "./appFile";
 
-export async function createFile(file: AppFile) {
-  const filePath = join(file.uri.fsPath, file.fullName);
+export async function createFileFromTemplate(file: AppFile) {
+  const filePath = join(file.fileLocation.fsPath, file.nameWithExtension);
 
   if (fs.existsSync(filePath)) {
     return window.showErrorMessage("A file already exists with given name");
   }
 
-  file.uri = Uri.parse(filePath);
+  file.fileLocation = Uri.parse(filePath);
 
   try {
     const data = await getFileTemplate(file);
-    await workspace.fs.writeFile(file.uri, new TextEncoder().encode(data));
-    await formatTextDocument(file.uri);
+    await workspace.fs.writeFile(
+      file.fileLocation,
+      new TextEncoder().encode(data)
+    );
+    await formatTextDocument(file.fileLocation);
   } catch (err: any) {
     return window.showErrorMessage(err);
   }
@@ -27,7 +30,10 @@ export async function createFile(file: AppFile) {
 
 export async function getFileTemplate(file: AppFile): Promise<string> {
   const parentDir = path.resolve(__dirname, "..");
-  const templateFilePath = join(parentDir, `/templates/${file.type}.mustache`);
+  const templateFilePath = join(
+    parentDir,
+    `/templates/${file.templateFileName}.mustache`
+  );
 
   const templateContent = await fs.readFile(templateFilePath, "utf8");
 
