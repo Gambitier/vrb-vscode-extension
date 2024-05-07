@@ -9,6 +9,7 @@ export enum TemplateFileName {
   apiMutation = "apiMutation",
   apiQuery = "apiQuery",
   dropdownComponent = "dropdownComponent",
+  materialReactTableComponent = "materialReactTableComponent",
 }
 
 export class AppFile {

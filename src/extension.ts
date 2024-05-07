@@ -5,6 +5,7 @@ import { window, workspace } from "vscode";
 import { addApiMutation, addApiQuery } from "./commands/addApi";
 import { addDropdownComponent } from "./commands/addDropdownComponent";
 import { addFormComponent } from "./commands/addFormComponent";
+import { addMaterialReactTableComponent } from "./commands/addMaterialReactTableComponent";
 import { generateFolderStructureCommand } from "./commands/generateFolderStructureCommand";
 import { helloWorldCommand } from "./commands/helloWorldCommand";
 
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(addApiMutation());
   context.subscriptions.push(addApiQuery());
   context.subscriptions.push(addDropdownComponent());
+  context.subscriptions.push(addMaterialReactTableComponent());
 }
 
 // This method is called when your extension is deactivated

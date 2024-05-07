@@ -38,6 +38,10 @@
       {
         "command": "extension.addDropdownComponent",
         "title": "Add Dropdown Component"
+      },
+      {
+        "command": "extension.addMaterialReactTableComponent",
+        "title": "Add Material React Table Component"
       }
     ],
     "submenus": [
@@ -54,6 +58,9 @@
         }
       ],
       "VRB.Commands": [
+        {
+          "command": "extension.addMaterialReactTableComponent"
+        },
         {
           "command": "extension.addDropdownComponent"
         },
