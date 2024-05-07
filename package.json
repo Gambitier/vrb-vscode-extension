@@ -34,6 +34,10 @@
       {
         "command": "extension.addApiQuery",
         "title": "Add Query"
+      },
+      {
+        "command": "extension.addDropdownComponent",
+        "title": "Add Dropdown Component"
       }
     ],
     "submenus": [
@@ -50,6 +54,9 @@
         }
       ],
       "VRB.Commands": [
+        {
+          "command": "extension.addDropdownComponent"
+        },
         {
           "command": "extension.addApiMutation"
         },

@@ -8,6 +8,7 @@ export enum TemplateFileName {
   formComponent = "formComponent",
   apiMutation = "apiMutation",
   apiQuery = "apiQuery",
+  dropdownComponent = "dropdownComponent",
 }
 
 export class AppFile {

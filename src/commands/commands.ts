@@ -6,4 +6,5 @@ export enum Command {
   addFormComponent = "extension.addFormComponent",
   addApiMutation = "extension.addApiMutation",
   addApiQuery = "extension.addApiQuery",
+  addDropdownComponent = "extension.addDropdownComponent",
 }
