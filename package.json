@@ -21,24 +21,32 @@
       },
       {
         "command": "extension.generateFolderStructure",
-        "title": "VRB - Add Feature"
+        "title": "Add Feature"
       },
       {
         "command": "extension.addFormComponent",
-        "title": "VRB - Add Form"
+        "title": "Add Form"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "VRB.Commands",
+        "label": "VRB"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "extension.generateFolderStructure",
-          "when": "explorerViewletVisible",
+          "submenu": "VRB.Commands",
           "group": "2_workspace"
+        }
+      ],
+      "VRB.Commands": [
+        {
+          "command": "extension.generateFolderStructure"
         },
         {
-          "command": "extension.addFormComponent",
-          "when": "explorerViewletVisible",
-          "group": "2_workspace"
+          "command": "extension.addFormComponent"
         }
       ]
     }
