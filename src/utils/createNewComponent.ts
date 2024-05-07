@@ -11,7 +11,7 @@ import { createFileFromTemplate } from "./templateUtils";
 export async function createNewComponent(
   componentName: string,
   resource: vscode.Uri,
-  fileType: TemplateFileName
+  fileType: TemplateFileName,
 ) {
   generateFilesSync(
     {
@@ -25,7 +25,7 @@ export async function createNewComponent(
         },
       ],
     },
-    resource.path
+    resource.path,
   );
 
   const componentUri = Uri.parse(path.join(resource.path, componentName));

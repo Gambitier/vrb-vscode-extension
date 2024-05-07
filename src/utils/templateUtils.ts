@@ -18,7 +18,7 @@ export async function createFileFromTemplate(file: AppFile) {
     const data = await getFileTemplate(file);
     await workspace.fs.writeFile(
       file.fileLocation,
-      new TextEncoder().encode(data)
+      new TextEncoder().encode(data),
     );
     await formatTextDocument(file.fileLocation);
   } catch (err: any) {
@@ -32,7 +32,7 @@ export async function getFileTemplate(file: AppFile): Promise<string> {
   const parentDir = path.resolve(__dirname, "..");
   const templateFilePath = join(
     parentDir,
-    `/templates/${file.templateFileName}.mustache`
+    `/templates/${file.templateFileName}.mustache`,
   );
 
   const templateContent = await fs.readFile(templateFilePath, "utf8");

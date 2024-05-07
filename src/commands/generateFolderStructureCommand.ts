@@ -7,7 +7,7 @@ import { Command } from "./commands";
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
     Command.generateFolderStructure,
-    (resource: Uri) => runCommand(resource)
+    (resource: Uri) => runCommand(resource),
   );
 
   return disposable;

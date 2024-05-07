@@ -23,7 +23,7 @@ const runCommand = async (resource: Uri) => {
 export function addFormComponent() {
   let disposable = vscode.commands.registerCommand(
     Command.addFormComponent,
-    (resource: Uri) => runCommand(resource)
+    (resource: Uri) => runCommand(resource),
   );
 
   return disposable;
