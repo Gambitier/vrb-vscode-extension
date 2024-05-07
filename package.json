@@ -32,11 +32,13 @@
       "explorer/context": [
         {
           "command": "extension.generateFolderStructure",
-          "when": "explorerViewletVisible"
+          "when": "explorerViewletVisible",
+          "group": "2_workspace"
         },
         {
           "command": "extension.addFormComponent",
-          "when": "explorerViewletVisible"
+          "when": "explorerViewletVisible",
+          "group": "2_workspace"
         }
       ]
     }
