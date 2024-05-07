@@ -4,7 +4,7 @@ export const invalidFileNames =
   /^(\d|\-)|[\\\s+={}\(\)\[\]"`/;,:.*?'<>|#$%^@!~&]|\-$/;
 
 export enum AppFileType {
-  feature = "feature",
+  // template: formComponent.mustache
   formComponent = "formComponent",
 }
 

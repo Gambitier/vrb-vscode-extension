@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import { render } from "mustache";
-import { join } from "path";
+import path, { join } from "path";
 import { TextEncoder } from "util";
 import { Uri, commands, window, workspace } from "vscode";
 import { AppFile } from "./appFile";
@@ -26,10 +26,10 @@ export async function createFile(file: AppFile) {
 }
 
 export async function getFileTemplate(file: AppFile): Promise<string> {
-  const templateContent = await fs.readFile(
-    join(__dirname, `/templates/${file.type}.mustache`),
-    "utf8"
-  );
+  const parentDir = path.resolve(__dirname, "..");
+  const templateFilePath = join(parentDir, `/templates/${file.type}.mustache`);
+
+  const templateContent = await fs.readFile(templateFilePath, "utf8");
 
   const viewModel = {
     Name: file.name,
