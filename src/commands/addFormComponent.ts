@@ -1,10 +1,8 @@
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
-import { AppFileType } from "./appFile";
+import { AppFileType, invalidFileNames } from "../utils/appFile";
+import { createNewComponent } from "../utils/createNewComponent";
 import { Command } from "./commands";
-import { createFile } from "./file-helper";
-import { generateNewComponentStructure } from "./generateNewComponentStructure";
-import { invalidFileNames } from "./utils";
 
 const runCommand = async (resource: Uri) => {
   const input = await window.showInputBox({
@@ -19,15 +17,7 @@ const runCommand = async (resource: Uri) => {
     return window.showErrorMessage("Invalid name");
   }
 
-  const componentUri = generateNewComponentStructure(input, resource);
-
-  return createFile({
-    name: input,
-    type: AppFileType.formComponent,
-    associatedArray: "imports",
-    uri: componentUri,
-    fullName: `${input}.tsx`,
-  });
+  await createNewComponent(input, resource, AppFileType.formComponent);
 };
 
 export function addFormComponent() {

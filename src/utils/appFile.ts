@@ -1,5 +1,8 @@
 import { Uri } from "vscode";
 
+export const invalidFileNames =
+  /^(\d|\-)|[\\\s+={}\(\)\[\]"`/;,:.*?'<>|#$%^@!~&]|\-$/;
+
 export enum AppFileType {
   feature = "feature",
   formComponent = "formComponent",
@@ -10,5 +13,4 @@ export class AppFile {
   name!: string;
   fullName!: string;
   uri!: Uri;
-  associatedArray: string | undefined;
 }

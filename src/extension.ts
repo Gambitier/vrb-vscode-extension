@@ -2,9 +2,9 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { window, workspace } from "vscode";
-import { addFormComponent } from "./addFormComponent";
-import { generateFolderStructureCommand } from "./generateFolderStructureCommand";
-import { helloWorldCommand } from "./helloWorldCommand";
+import { addFormComponent } from "./commands/addFormComponent";
+import { generateFolderStructureCommand } from "./commands/generateFolderStructureCommand";
+import { helloWorldCommand } from "./commands/helloWorldCommand";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed

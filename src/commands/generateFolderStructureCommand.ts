@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
+import { invalidFileNames } from "../utils/appFile";
+import { FileNode, generateFilesSync } from "../utils/fileTreeCreator";
 import { Command } from "./commands";
-import { FileNode, generateFiles } from "./fileTreeCreator";
-import { invalidFileNames } from "./utils";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
@@ -81,7 +81,7 @@ async function runCommand(resource: Uri) {
   };
 
   try {
-    return generateFiles(json, resource.path);
+    return generateFilesSync(json, resource.path);
   } catch (err) {
     return window.showErrorMessage("Error creating dir tree");
   }
