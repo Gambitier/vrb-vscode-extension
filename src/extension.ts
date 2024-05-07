@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { window, workspace } from "vscode";
+import { addApiMutation } from "./commands/addApiMutation";
 import { addFormComponent } from "./commands/addFormComponent";
 import { generateFolderStructureCommand } from "./commands/generateFolderStructureCommand";
 import { helloWorldCommand } from "./commands/helloWorldCommand";
@@ -17,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(generateFolderStructureCommand());
   context.subscriptions.push(addFormComponent());
+  context.subscriptions.push(addApiMutation());
 }
 
 // This method is called when your extension is deactivated

@@ -4,9 +4,9 @@ import { TemplateFileName, invalidFileNames } from "../utils/appFile";
 import { createNewComponent } from "../utils/createNewComponent";
 import { Command } from "./commands";
 
-const runCommand = async (resource: Uri) => {
+const runCommand = async (resource: Uri, fileType: TemplateFileName) => {
   const input = await window.showInputBox({
-    placeHolder: "Please enter form name",
+    placeHolder: "Please enter name",
   });
 
   if (input === undefined) {
@@ -17,13 +17,13 @@ const runCommand = async (resource: Uri) => {
     return window.showErrorMessage("Invalid name");
   }
 
-  await createNewComponent(input, resource, TemplateFileName.formComponent);
+  await createNewComponent(input, resource, fileType);
 };
 
 export function addFormComponent() {
   let disposable = vscode.commands.registerCommand(
     Command.addFormComponent,
-    (resource: Uri) => runCommand(resource),
+    (resource: Uri) => runCommand(resource, TemplateFileName.formComponent)
   );
 
   return disposable;

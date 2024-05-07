@@ -6,6 +6,7 @@ export const invalidFileNames =
 export enum TemplateFileName {
   // template: formComponent.mustache
   formComponent = "formComponent",
+  apiMutation = "apiMutation",
 }
 
 export class AppFile {

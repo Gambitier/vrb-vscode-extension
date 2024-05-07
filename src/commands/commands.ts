@@ -4,4 +4,5 @@ export enum Command {
   helloWorld = "extension.helloWorld",
   generateFolderStructure = "extension.generateFolderStructure",
   addFormComponent = "extension.addFormComponent",
+  addApiMutation = "extension.addApiMutation",
 }
