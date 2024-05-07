@@ -5,4 +5,5 @@ export enum Command {
   generateFolderStructure = "extension.generateFolderStructure",
   addFormComponent = "extension.addFormComponent",
   addApiMutation = "extension.addApiMutation",
+  addApiQuery = "extension.addApiQuery",
 }

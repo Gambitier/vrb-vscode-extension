@@ -7,6 +7,7 @@ export enum TemplateFileName {
   // template: formComponent.mustache
   formComponent = "formComponent",
   apiMutation = "apiMutation",
+  apiQuery = "apiQuery",
 }
 
 export class AppFile {

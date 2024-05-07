@@ -30,6 +30,10 @@
       {
         "command": "extension.addApiMutation",
         "title": "Add Mutation"
+      },
+      {
+        "command": "extension.addApiQuery",
+        "title": "Add Query"
       }
     ],
     "submenus": [
@@ -48,6 +52,9 @@
       "VRB.Commands": [
         {
           "command": "extension.addApiMutation"
+        },
+        {
+          "command": "extension.addApiQuery"
         },
         {
           "command": "extension.generateFolderStructure"

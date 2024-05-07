@@ -68,3 +68,12 @@ export function addApiMutation() {
 
   return disposable;
 }
+
+export function addApiQuery() {
+  let disposable = vscode.commands.registerCommand(
+    Command.addApiQuery,
+    (resource: Uri) => runCommand(resource, TemplateFileName.apiQuery)
+  );
+
+  return disposable;
+}
