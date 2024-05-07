@@ -1,0 +1,80 @@
+{
+  "Yup Enum/Mixed Required": {
+    "prefix": "ymr",
+    "body": [
+      "yup.mixed<$EnumName>().oneOf(Object.values($EnumName)).required()",
+    ],
+    "description": "Yup string schema with required validation",
+  },
+  "Yup String Required": {
+    "prefix": "ysr",
+    "body": ["yup.string().required()"],
+    "description": "Yup string schema with required validation",
+  },
+  "Yup Number Required": {
+    "prefix": "ynr",
+    "body": ["yup.number().required()"],
+    "description": "Yup number schema with required validation",
+  },
+  "Yup Email Required": {
+    "prefix": "yer",
+    "body": ["yup.string().email().required()"],
+    "description": "Yup email schema with required validation",
+  },
+  "Yup Boolean Required": {
+    "prefix": "ybr",
+    "body": ["yup.boolean().required()"],
+    "description": "Yup boolean schema with required validation",
+  },
+  "Yup Date Required": {
+    "prefix": "ydr",
+    "body": ["yup.date().required()"],
+    "description": "Yup date schema with required validation",
+  },
+  "Yup Object Required": {
+    "prefix": "yor",
+    "body": ["yup.object().required()"],
+    "description": "Yup object schema with required validation",
+  },
+  "Yup Array Required": {
+    "prefix": "yar",
+    "body": ["yup.array().required()"],
+    "description": "Yup array schema with required validation",
+  },
+
+  "Yup String Not Required": {
+    "prefix": "ys",
+    "body": ["yup.string().required()"],
+    "description": "Yup string schema with required validation",
+  },
+  "Yup Number Not Required": {
+    "prefix": "yn",
+    "body": ["yup.number().required()"],
+    "description": "Yup number schema with required validation",
+  },
+  "Yup Email Not Required": {
+    "prefix": "ye",
+    "body": ["yup.string().email().required()"],
+    "description": "Yup email schema with required validation",
+  },
+  "Yup Boolean Not Required": {
+    "prefix": "yb",
+    "body": ["yup.boolean().required()"],
+    "description": "Yup boolean schema with required validation",
+  },
+  "Yup Date Not Required": {
+    "prefix": "yd",
+    "body": ["yup.date().required()"],
+    "description": "Yup date schema with required validation",
+  },
+  "Yup Object Not Required": {
+    "prefix": "yo",
+    "body": ["yup.object().required()"],
+    "description": "Yup object schema with required validation",
+  },
+  "Yup Array Not Required": {
+    "prefix": "ya",
+    "body": ["yup.array().required()"],
+    "description": "Yup array schema with required validation",
+  },
+}

@@ -1,0 +1,39 @@
+{
+  "mui num textfield": {
+    "prefix": ["mui-num-textfield"],
+    "body": [
+      "",
+      "    <TextField",
+      "        label=\"$1\"",
+      "        type=\"number\"",
+      "        inputProps={{",
+      "            min: 0,",
+      "            max: 0,",
+      "        }}",
+      "        variant=\"outlined\"",
+      "        {...register('$2', {",
+      "            valueAsNumber: true,",
+      "        })}",
+      "        error={!!errors.$2}",
+      "        helperText={errors.$2?.message ?? ''}",
+      "    />",
+      ""
+    ],
+    "description": "MUI TextField component with type number"
+  },
+  "mui string textfield": {
+    "prefix": ["mui-string-textfield"],
+    "body": [
+      "",
+      "    <TextField",
+      "        label=\"$1\"",
+      "        variant=\"outlined\"",
+      "        {...register('$2')}",
+      "        error={!!errors.$2}",
+      "        helperText={errors.$2?.message ?? ''}",
+      "    />",
+      ""
+    ],
+    "description": "MUI TextField component"
+  }
+}

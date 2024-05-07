@@ -4,16 +4,31 @@
   "description": "utils",
   "repository": "https://github.com/Gambitier/vite-react-boilerplate-utils",
   "license": "MIT",
+  "publisher": "Gambitier",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.89.0"
   },
   "categories": [
-    "Other"
+    "Snippets"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "path": "./snippets/date-picker.code-snippets"
+      },
+      {
+        "path": "./snippets/mui-textfield.code-snippets"
+      },
+      {
+        "path": "./snippets/select-dropdown.code-snippets"
+      },
+      {
+        "path": "./snippets/yup.code-snippets"
+      }
+    ],
     "commands": [
       {
         "command": "extension.helloWorld",
