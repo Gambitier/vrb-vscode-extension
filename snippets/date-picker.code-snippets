@@ -1,0 +1,21 @@
+{
+  "Custom Date Picker": {
+    "description": "Custom Date Picker",
+    "prefix": ["app-date-picker"],
+    "body": [
+      "",
+      "   <AppDatePicker",
+      "     control={_hookFormControl}",
+      "     name={\"$FIELD_FROM_FORM_VALUES\"}",
+      "     datePickerProps={{",
+      "       label: \"$LABEL\",",
+      "       value: getValues(\"$FIELD_FROM_FORM_VALUES\") || null,",
+      "     }}",
+      "     errorHandlingProps={{",
+      "       formError: errors.$FIELD_FROM_FORM_VALUES,",
+      "     }}",
+      "   />",
+      ""
+    ]
+  }
+}

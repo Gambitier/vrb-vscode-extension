@@ -1,0 +1,28 @@
+import * as yup from "yup";
+
+type StepOneFormValues = {
+  //
+};
+
+type StepTwoFormValues = {
+  //
+};
+
+const stepOneSchema: yup.ObjectSchema<StepOneFormValues> = yup.object().shape({
+  //
+});
+
+const stepTwoSchema: yup.ObjectSchema<StepTwoFormValues> = yup.object().shape({
+  //
+});
+
+// TODO: use valid name for key & type of FormValues
+export type FormValues = {
+  stepOne: StepOneFormValues;
+  stepTwo: StepTwoFormValues;
+};
+
+export const schema: yup.ObjectSchema<FormValues> = yup.object().shape({
+  stepOne: stepOneSchema,
+  stepTwo: stepTwoSchema,
+});

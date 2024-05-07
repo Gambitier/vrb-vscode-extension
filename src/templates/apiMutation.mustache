@@ -1,0 +1,45 @@
+import { axiosInstance } from "@/lib/axios";
+import { queryClient } from "@/lib/reactQuery";
+import { useNotificationStore } from "@/stores/notifications";
+import { useMutation } from "@tanstack/react-query";
+import { {{ Name }}ResponseDTO } from "./types";
+
+type {{ Name }}RequestDTO = {
+  // TODO: define type
+  // NOTE: if FormValues type is same as this then dont add anything here
+};
+
+type ApiParams = {
+  data: {{ Name }}RequestDTO;
+};
+
+const callApi = async (params: ApiParams): Promise<{{ Name }}ResponseDTO> => {
+  const apiEndpoint = `/v1/`; // TODO: set valid api endpoint
+  return axiosInstance.post(apiEndpoint, params.data);
+};
+
+export const use{{ Name }} = () => {
+  const { addNotification } = useNotificationStore();
+
+  return useMutation({
+    mutationFn: (params: ApiParams) => {
+      return callApi(params);
+    },
+    onMutate: async (_apiParams: ApiParams) => {
+      // TODO: use correct queryKeys here, use keys from _apiParams if required
+      // cancel ongoing queries, need awaiting before calling actual api
+      await queryClient.cancelQueries({ queryKey: [queryKey] });
+    },
+    onSuccess: (_responseData: {{ Name }}ResponseDTO, _apiParams: ApiParams) => {
+      // TODO: use correct queryKeys here, use values from _apiParams/_responseData if required
+      queryClient.invalidateQueries({ queryKey: [queryKey] });
+
+      addNotification({
+        type: "success",
+        title: "Request Successful",
+        message: _responseData.message,
+      });
+    },
+  });
+};
+

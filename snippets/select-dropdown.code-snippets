@@ -1,0 +1,7 @@
+{
+  "Select Dropdown": {
+    "description": "Select Dropdown",
+    "prefix": ["dropdown"],
+    "body": ["<$1Dropdown register={register} errors={errors} />"]
+  }
+}

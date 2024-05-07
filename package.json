@@ -2,16 +2,37 @@
   "name": "vite-react-boilerplate-utils",
   "displayName": "Vite React Boilerplate Utils",
   "description": "utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gambitier/vite-react-boilerplate-utils"
+  },
+  "license": "MIT",
+  "publisher": "Gambitier",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.89.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "path": "./snippets/date-picker.code-snippets"
+      },
+      {
+        "path": "./snippets/mui-textfield.code-snippets"
+      },
+      {
+        "path": "./snippets/select-dropdown.code-snippets"
+      },
+      {
+        "path": "./snippets/yup.code-snippets"
+      }
+    ],
     "commands": [
       {
         "command": "extension.helloWorld",
@@ -19,26 +40,80 @@
       },
       {
         "command": "extension.generateFolderStructure",
-        "title": "Generate Folder Structure"
+        "title": "Add Feature"
+      },
+      {
+        "command": "extension.addFormComponent",
+        "title": "Add Form"
+      },
+      {
+        "command": "extension.addApiMutation",
+        "title": "Add Mutation"
+      },
+      {
+        "command": "extension.addApiQuery",
+        "title": "Add Query"
+      },
+      {
+        "command": "extension.addDropdownComponent",
+        "title": "Add Dropdown Component"
+      },
+      {
+        "command": "extension.addMaterialReactTableComponent",
+        "title": "Add Material React Table Component"
+      },
+      {
+        "command": "extension.addSteppedForm",
+        "title": "Add Stepped Form"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "VRB.Commands",
+        "label": "VRB"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "extension.generateFolderStructure",
-          "when": "explorerViewletVisible",
-          "title": "Generate Folder Structure"
+          "submenu": "VRB.Commands",
+          "group": "2_workspace"
+        }
+      ],
+      "VRB.Commands": [
+        {
+          "command": "extension.addSteppedForm"
+        },
+        {
+          "command": "extension.addMaterialReactTableComponent"
+        },
+        {
+          "command": "extension.addDropdownComponent"
+        },
+        {
+          "command": "extension.addApiMutation"
+        },
+        {
+          "command": "extension.addApiQuery"
+        },
+        {
+          "command": "extension.generateFolderStructure"
+        },
+        {
+          "command": "extension.addFormComponent"
         }
       ]
     }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
+    "compile": "rm -rf ./out && tsc -p ./ && yarn run copy",
+    "copy": "cp -r ./src/templates ./out",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\" "
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
@@ -50,7 +125,9 @@
     "@typescript-eslint/parser": "^7.7.1",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.26.1",
     "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
   "dependencies": {
