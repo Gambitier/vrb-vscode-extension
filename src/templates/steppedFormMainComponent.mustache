@@ -1,0 +1,48 @@
+import { Container, Step, StepLabel, Stepper } from "@mui/material";
+import { SubmitHandler } from "react-hook-form";
+import { use{{ Name }} } from "../../api";
+import { SteppedForm } from "./SteppedForm";
+import { FormValues } from "./schema";
+
+type Props = {
+  onSuccess: () => void;
+};
+
+// Component to be exported.
+// Keep the code in this component short - it should serve as top level for smaller components
+// export const Sample: React.FC<Props> = ({destructure props here}) => {...}
+export const {{ Name }}: React.FC<Props> = ({ onSuccess }) => {
+  const api = use{{ Name }}();
+  const isApiRequestPending = api.isPending;
+
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+    await api.mutateAsync({
+      // TODO: assign appropriate data here
+      data: data,
+    });
+    onSuccess();
+  };
+
+  // TODO: define step titles here
+  const stepTitles = ["Step One", "Step Two"];
+
+  const { Form, SubmitButton, activeStep } = SteppedForm(
+    onSubmit,
+    isApiRequestPending,
+    stepTitles.length
+  );
+
+  return (
+    <Container>
+      <Stepper activeStep={activeStep - 1} alternativeLabel>
+        {stepTitles.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Form />
+      <SubmitButton />
+    </Container>
+  );
+};

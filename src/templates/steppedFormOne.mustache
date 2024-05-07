@@ -1,0 +1,37 @@
+import { Stack } from "@mui/material";
+import { forwardRef } from "react";
+import { useFormContext } from "react-hook-form";
+import { WizardStepProps } from "@/components/Elements";
+import { FormValues } from "./schema";
+
+export const WizardStepOneForm = forwardRef(
+  ({ onSuccessValidation, onBack }: WizardStepProps, _ref) => {
+    const {
+      control: _hookFormControl,
+      formState,
+      trigger,
+      register,
+      getValues,
+    } = useFormContext<FormValues>();
+    const { errors } = formState;
+
+    const onNext = async () => {
+      // Triggers only the validation schema for this wizard-step/section
+      // TODO: Use correct form section name
+      const isValid = await trigger("stepOne");
+      if (isValid) {
+        onSuccessValidation();
+      }
+    };
+
+    return (
+      <Stack spacing={1}>
+        {/* TODO: Define the form of this wizard-step/section */}
+
+        {/* TODO: keep either of "Next" or "Back" button */}
+        <Button onClick={onNext}>Next</Button>
+        <Button onClick={onBack}>Back</Button>
+      </Stack>
+    );
+  }
+);

@@ -10,6 +10,12 @@ export enum TemplateFileName {
   apiQuery = "apiQuery",
   dropdownComponent = "dropdownComponent",
   materialReactTableComponent = "materialReactTableComponent",
+
+  // stepped form components
+  steppedFormMainComponent = "steppedFormMainComponent",
+  steppedFormParent = "steppedFormParent",
+  steppedFormOne = "steppedFormOne",
+  steppedFormSchema = "steppedFormSchema",
 }
 
 export class AppFile {
