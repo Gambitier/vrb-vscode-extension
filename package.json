@@ -2,7 +2,10 @@
   "name": "vite-react-boilerplate-utils",
   "displayName": "Vite React Boilerplate Utils",
   "description": "utils",
-  "repository": "https://github.com/Gambitier/vite-react-boilerplate-utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gambitier/vite-react-boilerplate-utils"
+  },
   "license": "MIT",
   "publisher": "Gambitier",
   "version": "0.0.1",
@@ -10,6 +13,7 @@
     "vscode": "^1.89.0"
   },
   "categories": [
+    "Other",
     "Snippets"
   ],
   "activationEvents": [],
