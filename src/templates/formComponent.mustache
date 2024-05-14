@@ -1,18 +1,18 @@
 import { Button } from "@/components/Elements";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
 import * as yup from "yup";
 
-// step 1: add type for form
+// TODO: add type for form
 export type FormValues = {
   email: string;
   password: string;
 };
 
-// stpe 2: write schema (validations) for FormType
+// TODO: write schema (validations) for FormType
 const schema: yup.ObjectSchema<FormValues> = yup.object().shape({
   email: yup.string().email().required(),
   password: yup
@@ -21,7 +21,7 @@ const schema: yup.ObjectSchema<FormValues> = yup.object().shape({
     .min(6, "Password should have at least 6 characters"),
 });
 
-// step 3: create fn useFormWithValidation
+// TODO: define default values
 const useFormWithValidation = () => {
   const form = useForm<FormValues>({
     defaultValues: {
@@ -35,7 +35,6 @@ const useFormWithValidation = () => {
   return form;
 };
 
-// step 4: define the form component
 const {{ Name }}Form = (
   onSubmit: SubmitHandler<FormValues>,
   isApiRequestPending: boolean
@@ -60,6 +59,7 @@ const {{ Name }}Form = (
     <Button
       type="submit"
       variant="contained"
+      fullWidth
       disabled={!isDirty || !isValid || isApiRequestPending}
       form={formId}
       isLoading={isApiRequestPending}
@@ -70,32 +70,29 @@ const {{ Name }}Form = (
 
   const Form = () => (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={1}>
+      <Box>
         {/* TODO: ADD FORM ELEMENTS HERE.......................... */}
 
         <SubmitButton />
-      </Stack>
+      </Box>
     </form>
   );
 
   return { SubmitButton, Form };
 };
 
-// step 5: add component prop type.
-// These Props are passed from routes or other calling components
 type Props = {
   onSuccess: () => void;
 };
 
-// step 6: Component to be exported.
-// Keep the code in this component short - it should serve as top level for smaller components
-// export const Sample: React.FC<Props> = ({destructure props here}) => {...}
+// Keep the code in this component short 
+// - it should serve as top level for smaller components
 export const {{ Name }}: React.FC<Props> = ({ onSuccess }) => {
   const api = use{{ Name }}();
   const isApiRequestPending = api.isPending;
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    // HANLDE FORM SUBMISSION HERE....................
+    // TODO: HANLDE FORM SUBMISSION HERE....................
     throw new Error(`onSubmit Not implemented, data: ${JSON.stringify(data)}`);
     onSuccess();
   };

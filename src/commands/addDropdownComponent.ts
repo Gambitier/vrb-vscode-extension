@@ -21,7 +21,7 @@ const runCommand = async (resource: Uri, fileType: TemplateFileName) => {
     name: componentName,
     templateFileName: fileType,
     fileLocation: resource,
-    nameWithExtension: `${componentName}Dropdown.ts`,
+    nameWithExtension: `${componentName}Dropdown.tsx`,
   });
 };
 

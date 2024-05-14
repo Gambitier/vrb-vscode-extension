@@ -9,8 +9,10 @@ import {
   type MRT_ColumnDef,
 } from "material-react-table";
 import { useMemo, useState } from "react";
+import { use{{ Name }}List } from "../api";
+import { {{ Name }}ListItem } from "../api/types";
 
-export const {{ Name }}: React.FC<unknown> = () => {
+export const {{ Name }}List: React.FC<unknown> = () => {
   const [pagination, setPagination] = useState({
     pageIndex: 0, // initial state = 0, means laod first page
     pageSize: 5,
@@ -23,18 +25,16 @@ export const {{ Name }}: React.FC<unknown> = () => {
     pageSize: pagination.pageSize,
   };
 
-  const api = use{{ Name }}({
+  const api = use{{ Name }}List({
+    // TODO: add other params
     pagination: paginationQueryOptions,
-    // TODO: pass other required api params
   });
 
-  // TODO: fix values for dbRowCount, tableRows
   const dbRowCount = api.data?.data?.totalRecords ?? 0;
   const tableRows = api.data?.data?.records ?? [];
 
-  const columns = useMemo<MRT_ColumnDef<{{ Name }}Item>[]>(
+  const columns = useMemo<MRT_ColumnDef<{{ Name }}ListItem>[]>(
     () => [
-      // TODO: define columns like this
       {
         accessorFn: (originalRow) => originalRow.name,
         id: "name",
@@ -71,14 +71,13 @@ export const {{ Name }}: React.FC<unknown> = () => {
     },
 
     // crud options
-    editDisplayMode: "custom",
-    positionActionsColumn: "last",
-    enableRowActions: true,
-    renderRowActionMenuItems: ({ closeMenu, row }) => [
-      // TODO: define custom components for edit/delete
-      // <UpdatePlan key={0} data={row.original} onSuccess={closeMenu} />,
-      // <DeletePlan key={1} data={row.original} onSuccess={closeMenu} />,
-    ],
+    // editDisplayMode: "custom",
+    // positionActionsColumn: "last",
+    // enableRowActions: true,
+    // renderRowActionMenuItems: ({ closeMenu, row }) => [
+    //   <Update{{ Name }} key={0} data={row.original} onSuccess={closeMenu} />,
+    //   <Delete{{ Name }} key={1} data={row.original} onSuccess={closeMenu} />,
+    // ],
   });
 
   return <MaterialReactTable table={table} />;

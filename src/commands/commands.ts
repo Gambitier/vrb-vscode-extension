@@ -7,6 +7,6 @@ export enum Command {
   addApiMutation = "extension.addApiMutation",
   addApiQuery = "extension.addApiQuery",
   addDropdownComponent = "extension.addDropdownComponent",
-  addMaterialReactTableComponent = "extension.addMaterialReactTableComponent",
   addSteppedForm = "extension.addSteppedForm",
+  addDataTableComponent = "extension.addDataTableComponent",
 }

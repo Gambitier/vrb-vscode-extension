@@ -1,13 +1,13 @@
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
-import { invalidFileNames } from "../utils/appFile";
+import { TemplateFileName, invalidFileNames } from "../utils/appFile";
 import { FileNode, generateFilesSync } from "../utils/fileTreeCreator";
 import { Command } from "./commands";
 
 export function generateFolderStructureCommand() {
   let disposable = vscode.commands.registerCommand(
     Command.generateFolderStructure,
-    (resource: Uri) => runCommand(resource),
+    (resource: Uri) => runCommand(resource)
   );
 
   return disposable;
@@ -31,29 +31,22 @@ async function runCommand(resource: Uri) {
     type: "directory",
     children: [
       {
-        // TODO: generate this file with template
-        // export * from all directories created
         name: "index.ts",
         type: "file",
+        fileContent: 'export * from "./routes"',
       },
       {
         name: "components",
         type: "directory",
-        children: [
-          {
-            name: "index.ts",
-            type: "file",
-          },
-        ],
       },
       {
         name: "routes",
         type: "directory",
         children: [
           {
-            // TODO: generate this file with template
             name: "index.tsx",
             type: "file",
+            fileTemplate: TemplateFileName.routeComponent,
           },
         ],
       },
@@ -81,7 +74,7 @@ async function runCommand(resource: Uri) {
   };
 
   try {
-    return generateFilesSync(json, resource.path);
+    return await generateFilesSync(json, resource.path);
   } catch (err) {
     return window.showErrorMessage("Error creating dir tree");
   }

@@ -3,5 +3,5 @@
 ## Publishing Extension
 
 ```bash
-npx vsce package
+yarn run publish
 ```

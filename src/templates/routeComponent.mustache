@@ -1,0 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+
+// TODO: update route name
+export const TempRoutes = () => {
+  return (
+    <Routes>
+      <Route
+        path="path"
+        element={<ComponentName onSuccess={() => console.log("success")} />}
+      />
+    </Routes>
+  );
+};
