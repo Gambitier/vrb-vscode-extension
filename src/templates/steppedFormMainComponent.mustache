@@ -42,7 +42,7 @@ export const {{ Name }}: React.FC<Props> = ({ onSuccess }) => {
         ))}
       </Stepper>
       <Form />
-      <SubmitButton />
+      {activeStep === stepTitles.length ? <SubmitButton /> : ""}
     </Container>
   );
 };
