@@ -115,7 +115,7 @@
     "publish": "npx rimraf ./vite-react-boilerplate-utils-0.0.1.vsix && npm run compile && npx vsce package",
     "vscode:prepublish": "yarn run compile",
     "compile": "npx rimraf ./out && tsc -p ./ && yarn run copy",
-    "copy": "npx ncp ./src/templates ./out",
+    "copy": "npx ncp ./src/templates ./out/templates",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
