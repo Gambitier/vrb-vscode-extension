@@ -43,7 +43,7 @@ const runCommand = async (resource: Uri) => {
   );
 
   const componentFilePath = path.join(resource.path, componentName);
-  await formatTextDocument(Uri.parse(path.join(componentFilePath, "index.ts")));
+  await formatTextDocument(Uri.file(path.join(componentFilePath, "index.ts")));
 
   // add main form component
   await createFileFromTemplate({

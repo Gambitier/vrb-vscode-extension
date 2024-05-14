@@ -50,7 +50,7 @@ const runCommand = async (resource: Uri, fileType: TemplateFileName) => {
     "types",
     responseDtoFileName
   );
-  await formatTextDocument(Uri.parse(ResponseDTOFilePath));
+  await formatTextDocument(Uri.file(ResponseDTOFilePath));
 
   await createFileFromTemplate({
     name: componentName,
