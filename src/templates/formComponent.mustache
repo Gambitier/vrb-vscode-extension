@@ -6,13 +6,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
 import * as yup from "yup";
 
-// step 1: add type for form
+// TODO: add type for form
 export type FormValues = {
   email: string;
   password: string;
 };
 
-// stpe 2: write schema (validations) for FormType
+// TODO: write schema (validations) for FormType
 const schema: yup.ObjectSchema<FormValues> = yup.object().shape({
   email: yup.string().email().required(),
   password: yup
@@ -21,7 +21,7 @@ const schema: yup.ObjectSchema<FormValues> = yup.object().shape({
     .min(6, "Password should have at least 6 characters"),
 });
 
-// step 3: create fn useFormWithValidation
+// TODO: define default values
 const useFormWithValidation = () => {
   const form = useForm<FormValues>({
     defaultValues: {
@@ -35,7 +35,6 @@ const useFormWithValidation = () => {
   return form;
 };
 
-// step 4: define the form component
 const {{ Name }}Form = (
   onSubmit: SubmitHandler<FormValues>,
   isApiRequestPending: boolean
@@ -82,15 +81,12 @@ const {{ Name }}Form = (
   return { SubmitButton, Form };
 };
 
-// step 5: add component prop type.
-// These Props are passed from routes or other calling components
 type Props = {
   onSuccess: () => void;
 };
 
-// step 6: Component to be exported.
-// Keep the code in this component short - it should serve as top level for smaller components
-// export const Sample: React.FC<Props> = ({destructure props here}) => {...}
+// Keep the code in this component short 
+// - it should serve as top level for smaller components
 export const {{ Name }}: React.FC<Props> = ({ onSuccess }) => {
   const api = use{{ Name }}();
   const isApiRequestPending = api.isPending;
