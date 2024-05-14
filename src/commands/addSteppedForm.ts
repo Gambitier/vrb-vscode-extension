@@ -76,6 +76,9 @@ const runCommand = async (resource: Uri) => {
     templateFileName: TemplateFileName.steppedFormSchema,
     fileLocation: Uri.parse(componentFilePath),
   });
+
+  // reolad vscode to files sync/indexing
+  await vscode.commands.executeCommand("workbench.action.reloadWindow");
 };
 
 export function addSteppedForm() {
