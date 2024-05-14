@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { v4 } from "uuid";
-import { WizardStepOne } from "./WizardStepOne";
+import { WizardStepOneForm } from "./WizardStepOneForm";
 import { FormValues, schema } from "./schema";
 
 const useFormWithValidation = () => {
@@ -68,7 +68,7 @@ export const SteppedForm = (
       <form id={formId} onSubmit={handleSubmit(onSubmit)}>
         {/* TODO: ADD STEPS HERE.......................... */}
         {activeStep === 1 && (
-          <WizardStepOne
+          <WizardStepOneForm
             {...register("stepOne")}
             onSuccessValidation={onSuccessValidation}
             onBack={onBack}
