@@ -21,6 +21,12 @@
   "contributes": {
     "snippets": [
       {
+        "path": "./snippets/route.code-snippets"
+      },
+      {
+        "path": "./snippets/mui-menuitem.code-snippets"
+      },
+      {
         "path": "./snippets/date-picker.code-snippets"
       },
       {
@@ -65,6 +71,10 @@
       {
         "command": "extension.addSteppedForm",
         "title": "Add Stepped Form"
+      },
+      {
+        "command": "extension.addDataTableComponent",
+        "title": "Add Data Table Component With Custom Pagination"
       }
     ],
     "submenus": [
@@ -81,6 +91,9 @@
         }
       ],
       "VRB.Commands": [
+        {
+          "command": "extension.addDataTableComponent"
+        },
         {
           "command": "extension.addSteppedForm"
         },

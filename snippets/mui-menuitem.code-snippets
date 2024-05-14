@@ -1,0 +1,20 @@
+{
+  "MUI Menu Item Snippet": {
+    "description": "MUI Menu Item Snippet",
+    "prefix": ["mui-menu-item"],
+    "body": [
+      "",
+      "<MenuItem",
+      "  onClick={() => {",
+      "    doSomething();",
+      "  }}",
+      ">",
+      "  <ListItemIcon>",
+      "    <Delete color=\"error\" />",
+      "  </ListItemIcon>",
+      "  Delete",
+      "</MenuItem>",
+      "",
+    ],
+  },
+}

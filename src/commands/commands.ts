@@ -9,4 +9,5 @@ export enum Command {
   addDropdownComponent = "extension.addDropdownComponent",
   addMaterialReactTableComponent = "extension.addMaterialReactTableComponent",
   addSteppedForm = "extension.addSteppedForm",
+  addDataTableComponent = "extension.addDataTableComponent",
 }

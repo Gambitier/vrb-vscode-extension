@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { window, workspace } from "vscode";
 import { addApiMutation, addApiQuery } from "./commands/addApi";
+import { addDataTableComponentCommand } from "./commands/addDataTableComponent";
 import { addDropdownComponent } from "./commands/addDropdownComponent";
 import { addFormComponent } from "./commands/addFormComponent";
 import { addMaterialReactTableComponent } from "./commands/addMaterialReactTableComponent";
@@ -26,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(addDropdownComponent());
   context.subscriptions.push(addMaterialReactTableComponent());
   context.subscriptions.push(addSteppedForm());
+  context.subscriptions.push(addDataTableComponentCommand());
 }
 
 // This method is called when your extension is deactivated
