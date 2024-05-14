@@ -22,7 +22,7 @@ const runCommand = async (resource: Uri) => {
     return window.showErrorMessage("Invalid name");
   }
 
-  generateFilesSync(
+  await generateFilesSync(
     {
       name: componentName,
       type: "directory",
@@ -78,7 +78,11 @@ const runCommand = async (resource: Uri) => {
   });
 
   // reolad vscode to files sync/indexing
-  await vscode.commands.executeCommand("workbench.action.reloadWindow");
+  try {
+    await vscode.commands.executeCommand("workbench.action.reloadWindow");
+  } catch (err) {
+    //ignore
+  }
 };
 
 export function addSteppedForm() {

@@ -45,10 +45,15 @@ export async function getFileTemplate(file: AppFile): Promise<string> {
 }
 
 export async function formatTextDocument(uri: Uri) {
-  const doc = await workspace.openTextDocument(uri);
-  await window.showTextDocument(doc);
-  await commands.executeCommand("editor.action.formatDocument");
-  await saveAllFiles();
+  try {
+    const doc = await workspace.openTextDocument(uri);
+    await window.showTextDocument(doc);
+    await commands.executeCommand("editor.action.formatDocument");
+    await saveAllFiles();
+  } catch (err) {
+    // ignore
+    console.error(err);
+  }
 }
 
 export async function saveAllFiles() {

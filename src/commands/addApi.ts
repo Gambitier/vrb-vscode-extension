@@ -23,7 +23,7 @@ const runCommand = async (resource: Uri, fileType: TemplateFileName) => {
   }
 
   const responseDtoFileName = `${componentName}ResponseDTO.ts`;
-  generateFilesSync(
+  await generateFilesSync(
     {
       name: "types",
       type: "directory",
