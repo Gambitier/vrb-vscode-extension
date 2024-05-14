@@ -12,7 +12,7 @@ export async function createFileFromTemplate(file: AppFile) {
     return window.showErrorMessage("A file already exists with given name");
   }
 
-  file.fileLocation = Uri.parse(filePath);
+  file.fileLocation = Uri.file(filePath);
 
   try {
     const data = await getFileTemplate(file);
