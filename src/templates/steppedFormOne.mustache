@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { WizardStepProps } from "@/components/Elements";
@@ -25,13 +25,13 @@ export const WizardStepOneForm = forwardRef(
     };
 
     return (
-      <Stack spacing={1}>
+      <Box component="form" noValidate>
         {/* TODO: Define the form of this wizard-step/section */}
 
         {/* TODO: keep either of "Next" or "Back" button */}
         <Button onClick={onNext}>Next</Button>
         <Button onClick={onBack}>Back</Button>
-      </Stack>
+      </Box>
     );
   }
 );

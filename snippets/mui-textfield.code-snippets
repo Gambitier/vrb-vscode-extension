@@ -6,6 +6,7 @@
       "    <TextField",
       "        label=\"$1\"",
       "        type=\"number\"",
+      "        fullWidth",
       "        inputProps={{",
       "            min: 0,",
       "            max: 0,",
@@ -17,9 +18,9 @@
       "        error={!!errors.$2}",
       "        helperText={errors.$2?.message ?? ''}",
       "    />",
-      ""
+      "",
     ],
-    "description": "MUI TextField component with type number"
+    "description": "MUI TextField component with type number",
   },
   "mui string textfield": {
     "prefix": ["mui-string-textfield"],
@@ -28,12 +29,13 @@
       "    <TextField",
       "        label=\"$1\"",
       "        variant=\"outlined\"",
+      "        fullWidth",
       "        {...register('$2')}",
       "        error={!!errors.$2}",
       "        helperText={errors.$2?.message ?? ''}",
       "    />",
-      ""
+      "",
     ],
-    "description": "MUI TextField component"
-  }
+    "description": "MUI TextField component",
+  },
 }
