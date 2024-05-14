@@ -106,6 +106,7 @@
     }
   },
   "scripts": {
+    "publish": "rm *.vsix && npm run compile && npx vsce package",
     "vscode:prepublish": "yarn run compile",
     "compile": "rm -rf ./out && tsc -p ./ && yarn run copy",
     "copy": "cp -r ./src/templates ./out",
