@@ -31,20 +31,13 @@ async function runCommand(resource: Uri) {
     type: "directory",
     children: [
       {
-        // TODO: generate this file with template
-        // export * from all directories created
         name: "index.ts",
         type: "file",
+        fileContent: 'export * from "routes"',
       },
       {
         name: "components",
         type: "directory",
-        children: [
-          {
-            name: "index.ts",
-            type: "file",
-          },
-        ],
       },
       {
         name: "routes",
@@ -81,7 +74,7 @@ async function runCommand(resource: Uri) {
   };
 
   try {
-    return generateFilesSync(json, resource.path);
+    return await generateFilesSync(json, resource.path);
   } catch (err) {
     return window.showErrorMessage("Error creating dir tree");
   }
