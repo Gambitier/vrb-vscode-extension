@@ -42,11 +42,11 @@ const runCommand = async (resource: Uri, fileType: TemplateFileName) => {
         },
       ],
     },
-    resource.path
+    resource.fsPath
   );
 
   const ResponseDTOFilePath = path.join(
-    resource.path,
+    resource.fsPath,
     "types",
     responseDtoFileName
   );

@@ -74,7 +74,7 @@ async function runCommand(resource: Uri) {
   };
 
   try {
-    return await generateFilesSync(json, resource.path);
+    return await generateFilesSync(json, resource.fsPath);
   } catch (err) {
     return window.showErrorMessage("Error creating dir tree");
   }

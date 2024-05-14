@@ -25,10 +25,10 @@ export async function createNewComponent(
         },
       ],
     },
-    resource.path
+    resource.fsPath
   );
 
-  const componentUri = Uri.parse(path.join(resource.path, componentName));
+  const componentUri = Uri.parse(path.join(resource.fsPath, componentName));
 
   await createFileFromTemplate({
     name: componentName,
