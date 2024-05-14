@@ -34,7 +34,7 @@ export async function generateFilesSync(json: FileNode, basePath: string) {
       );
     }
   } else if (json.type === "directory") {
-    await workspace.fs.createDirectory(Uri.parse(path));
+    await workspace.fs.createDirectory(Uri.file(path));
     for (const child of json.children ?? []) {
       await generateFilesSync(child, path);
     }
