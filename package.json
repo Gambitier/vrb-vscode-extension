@@ -65,10 +65,6 @@
         "title": "Add Dropdown Component"
       },
       {
-        "command": "extension.addMaterialReactTableComponent",
-        "title": "Add Material React Table Component"
-      },
-      {
         "command": "extension.addSteppedForm",
         "title": "Add Stepped Form"
       },
@@ -96,9 +92,6 @@
         },
         {
           "command": "extension.addSteppedForm"
-        },
-        {
-          "command": "extension.addMaterialReactTableComponent"
         },
         {
           "command": "extension.addDropdownComponent"

@@ -6,7 +6,6 @@ import { addApiMutation, addApiQuery } from "./commands/addApi";
 import { addDataTableComponentCommand } from "./commands/addDataTableComponent";
 import { addDropdownComponent } from "./commands/addDropdownComponent";
 import { addFormComponent } from "./commands/addFormComponent";
-import { addMaterialReactTableComponent } from "./commands/addMaterialReactTableComponent";
 import { addSteppedForm } from "./commands/addSteppedForm";
 import { generateFolderStructureCommand } from "./commands/generateFolderStructureCommand";
 import { helloWorldCommand } from "./commands/helloWorldCommand";
@@ -25,7 +24,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(addApiMutation());
   context.subscriptions.push(addApiQuery());
   context.subscriptions.push(addDropdownComponent());
-  context.subscriptions.push(addMaterialReactTableComponent());
   context.subscriptions.push(addSteppedForm());
   context.subscriptions.push(addDataTableComponentCommand());
 }
