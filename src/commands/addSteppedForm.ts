@@ -48,7 +48,7 @@ const runCommand = async (resource: Uri) => {
   // add main form component
   await createFileFromTemplate({
     name: componentName,
-    nameWithExtension: `${componentName}.ts`,
+    nameWithExtension: `${componentName}.tsx`,
     templateFileName: TemplateFileName.steppedFormMainComponent,
     fileLocation: Uri.parse(componentFilePath),
   });
@@ -56,7 +56,7 @@ const runCommand = async (resource: Uri) => {
   // add parent of all stepped form components
   await createFileFromTemplate({
     name: "SteppedForm",
-    nameWithExtension: `SteppedForm.ts`,
+    nameWithExtension: `SteppedForm.tsx`,
     templateFileName: TemplateFileName.steppedFormParent,
     fileLocation: Uri.parse(componentFilePath),
   });
@@ -64,7 +64,7 @@ const runCommand = async (resource: Uri) => {
   // add stepOne form
   await createFileFromTemplate({
     name: "WizardStepOneForm",
-    nameWithExtension: `WizardStepOneForm.ts`,
+    nameWithExtension: `WizardStepOneForm.tsx`,
     templateFileName: TemplateFileName.steppedFormOne,
     fileLocation: Uri.parse(componentFilePath),
   });
