@@ -33,7 +33,7 @@ async function runCommand(resource: Uri) {
       {
         name: "index.ts",
         type: "file",
-        fileContent: 'export * from "routes"',
+        fileContent: 'export * from "./routes"',
       },
       {
         name: "components",
