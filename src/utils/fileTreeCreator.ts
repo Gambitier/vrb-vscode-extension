@@ -1,6 +1,5 @@
-import fs from "fs";
 import { join } from "path";
-import { Uri } from "vscode";
+import { Uri, workspace } from "vscode";
 import { TemplateFileName } from "./appFile";
 import { createFileFromTemplate } from "./templateUtils";
 
@@ -29,30 +28,15 @@ export async function generateFilesSync(json: FileNode, basePath: string) {
       };
       await createFileFromTemplate(file);
     } else {
-      createFileSync(path, json.fileContent);
+      await workspace.fs.writeFile(
+        Uri.file(path),
+        new TextEncoder().encode(json.fileContent)
+      );
     }
   } else if (json.type === "directory") {
-    createDirSync(path);
+    await workspace.fs.createDirectory(Uri.parse(path));
     for (const child of json.children ?? []) {
       generateFilesSync(child, path);
     }
   }
-}
-
-export function createDirSync(path: string) {
-  if (fs.existsSync(path)) {
-    return;
-  }
-
-  fs.mkdirSync(path);
-  console.log("Created directory:", path);
-}
-
-export function createFileSync(path: string, content: string = "") {
-  if (fs.existsSync(path)) {
-    return;
-  }
-
-  fs.writeFileSync(path, content);
-  console.log("Created file:", path);
 }
