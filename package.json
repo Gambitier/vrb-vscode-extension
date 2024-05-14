@@ -119,9 +119,9 @@
     }
   },
   "scripts": {
-    "publish": "rm *.vsix && npm run compile && npx vsce package",
+    "publish": "npx rimraf *.vsix && npm run compile && npx vsce package",
     "vscode:prepublish": "yarn run compile",
-    "compile": "rm -rf ./out && tsc -p ./ && yarn run copy",
+    "compile": "npx rimraf ./out && tsc -p ./ && yarn run copy",
     "copy": "cp -r ./src/templates ./out",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
@@ -142,6 +142,7 @@
     "@vscode/vsce": "^2.26.1",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
     "typescript": "^5.4.5"
   },
   "dependencies": {
