@@ -1,0 +1,21 @@
+{
+  "Route Component": {
+    "description": "Route Component",
+    "prefix": ["route"],
+    "body": [
+      "import { Route, Routes } from \"react-router-dom\";",
+      "",
+      "export const $1Routes = () => {",
+      "  return (",
+      "    <Routes>",
+      "      <Route",
+      "        path=\"path\"",
+      "        element={<ComponentName onSuccess={() => console.log(\"success\")} />}",
+      "      />",
+      "    </Routes>",
+      "  );",
+      "};",
+      "",
+    ],
+  },
+}
