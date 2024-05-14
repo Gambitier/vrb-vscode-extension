@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { Uri, window } from "vscode";
-import { invalidFileNames } from "../utils/appFile";
+import { TemplateFileName, invalidFileNames } from "../utils/appFile";
 import { FileNode, generateFilesSync } from "../utils/fileTreeCreator";
 import { Command } from "./commands";
 
@@ -51,9 +51,9 @@ async function runCommand(resource: Uri) {
         type: "directory",
         children: [
           {
-            // TODO: generate this file with template
             name: "index.tsx",
             type: "file",
+            fileTemplate: TemplateFileName.routeComponent,
           },
         ],
       },
