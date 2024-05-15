@@ -28,7 +28,7 @@ export async function createNewComponent(
     resource.fsPath
   );
 
-  const componentUri = Uri.parse(path.join(resource.fsPath, componentName));
+  const componentUri = Uri.file(path.join(resource.fsPath, componentName));
 
   await createFileFromTemplate({
     name: componentName,

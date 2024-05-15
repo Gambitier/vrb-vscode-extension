@@ -23,7 +23,7 @@ export async function generateFilesSync(json: FileNode, basePath: string) {
       const file = {
         name: json.name.split(".")[0],
         nameWithExtension: json.name,
-        fileLocation: Uri.parse(basePath),
+        fileLocation: Uri.file(basePath),
         templateFileName: json.fileTemplate,
       };
       await createFileFromTemplate(file);

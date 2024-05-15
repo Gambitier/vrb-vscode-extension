@@ -50,7 +50,7 @@ const runCommand = async (resource: Uri) => {
     name: componentName,
     nameWithExtension: `${componentName}.tsx`,
     templateFileName: TemplateFileName.steppedFormMainComponent,
-    fileLocation: Uri.parse(componentFilePath),
+    fileLocation: Uri.file(componentFilePath),
   });
 
   // add parent of all stepped form components
@@ -58,7 +58,7 @@ const runCommand = async (resource: Uri) => {
     name: "SteppedForm",
     nameWithExtension: `SteppedForm.tsx`,
     templateFileName: TemplateFileName.steppedFormParent,
-    fileLocation: Uri.parse(componentFilePath),
+    fileLocation: Uri.file(componentFilePath),
   });
 
   // add stepOne form
@@ -66,7 +66,7 @@ const runCommand = async (resource: Uri) => {
     name: "WizardStepOneForm",
     nameWithExtension: `WizardStepOneForm.tsx`,
     templateFileName: TemplateFileName.steppedFormOne,
-    fileLocation: Uri.parse(componentFilePath),
+    fileLocation: Uri.file(componentFilePath),
   });
 
   // add SchemaTemplate
@@ -74,7 +74,7 @@ const runCommand = async (resource: Uri) => {
     name: "schema",
     nameWithExtension: `schema.ts`,
     templateFileName: TemplateFileName.steppedFormSchema,
-    fileLocation: Uri.parse(componentFilePath),
+    fileLocation: Uri.file(componentFilePath),
   });
 
   // reolad vscode to files sync/indexing
